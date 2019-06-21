@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity">
+
+        <com.example.myapplication.DrawObjectsSandboxWidget
+                android:id="@+id/sandboxRect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <com.example.myapplication.DrawObjectsSandboxWidget
+                android:id="@+id/sandboxOval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sandboxRect"
+                />
+
+        <com.example.myapplication.DrawPathSandboxWidget
+                android:id="@+id/sandboxPathCWEvenOdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxRect"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <com.example.myapplication.DrawPathSandboxWidget
+                android:id="@+id/sandboxPathCCWEvenOdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxOval"
+                app:layout_constraintStart_toEndOf="@+id/sandboxPathCWEvenOdd"
+                />
+
+        <com.example.myapplication.DrawClipSandboxWidget
+                android:id="@+id/sandboxClip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxPathCWEvenOdd"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <com.example.myapplication.DrawClipSandboxWidget
+                android:id="@+id/sandboxClip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxPathCCWEvenOdd"
+                app:layout_constraintStart_toEndOf="@+id/sandboxClip"
+                />
+
+        <com.example.myapplication.DrawClipOutSandboxWidget
+                android:id="@+id/sandboxClipOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxClip"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <com.example.myapplication.DrawClipOutSandboxWidget
+                android:id="@+id/sandboxClipOut2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/sandboxClip2"
+                app:layout_constraintStart_toEndOf="@+id/sandboxClipOut"
+                />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
