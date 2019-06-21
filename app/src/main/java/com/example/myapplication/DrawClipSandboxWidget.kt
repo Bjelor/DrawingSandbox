@@ -11,6 +11,9 @@ class DrawClipSandboxWidget @JvmOverloads constructor(
 ) :
     DrawSandboxWidget(context, attrs, defStyleAttr) {
 
+    /**
+     * Just a variable to allow alternating between shapes
+     */
     var style = 0
         set(value) {
             field = value
@@ -34,11 +37,17 @@ class DrawClipSandboxWidget @JvmOverloads constructor(
 
         paint.color = Color.RED
 
+        // save the current canvas clip to be restored later
         canvas.save()
+
+        // clip canvas to the defined rect
         canvas.clipRect(rect, region)
 
+        // draw rect2 into the canvas => the shape will be clipped by rect
         canvas.drawRect(rect2, paint)
 
+        // restore the canvas to the last saved state => this means that everything that was drawn before the clipping
+        // will be shown as well
         canvas.restore()
     }
 

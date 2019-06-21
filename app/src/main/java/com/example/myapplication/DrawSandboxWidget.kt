@@ -2,8 +2,6 @@ package com.example.myapplication
 
 import android.content.*
 import android.graphics.*
-import android.support.v4.content.ContextCompat
-import android.text.TextPaint
 import android.util.*
 import android.view.View
 import kotlin.math.*

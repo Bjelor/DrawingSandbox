@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Region
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.Log
@@ -14,6 +15,9 @@ class DrawClipOutSandboxWidget @JvmOverloads constructor(
 ) :
     DrawSandboxWidget(context, attrs, defStyleAttr) {
 
+    /**
+     * Just a variable to allow alternating between shapes
+     */
     var style = 0
         set(value) {
             field = value
@@ -27,15 +31,24 @@ class DrawClipOutSandboxWidget @JvmOverloads constructor(
 
         paint.color = ContextCompat.getColor(context, R.color.gray_30)
 
+        // save the current canvas clip to be restored later
         canvas.save()
 
-        canvas.clipRect(rect2, Region.Op.DIFFERENCE)
+        // clip a rect2 area out of the current canvas clip => objects will not be drawn inside this area
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            canvas.clipOutRect(rect2)
+        } else {
+            canvas.clipRect(rect2, Region.Op.DIFFERENCE)
+        }
 
+        // object drawn onto canvas will be clipped
         drawByStyle(canvas, paint, rect)
 
+        // restore original canvas clip => now we can draw over the area that was clipped after canvas.save()
         canvas.restore()
 
         paint.color = ContextCompat.getColor(context, R.color.gray_70)
+
 
         drawByStyle(canvas, paint, rect2)
     }

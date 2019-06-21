@@ -14,6 +14,9 @@ class DrawObjectsSandboxWidget @JvmOverloads constructor(
 
     private var drawBounds = Rect(0,0, 100, 100)
 
+    /**
+     * Just a variable to allow alternating between shapes
+     */
     var style = 0
         set(value) {
             field = value
@@ -25,6 +28,7 @@ class DrawObjectsSandboxWidget @JvmOverloads constructor(
 
         Log.d(tag, "========================================")
 
+        // clipping to use with quickReject to show effects
 //        canvas.clipRect(drawBounds)
 
         paint.color = ContextCompat.getColor(context, R.color.gray_30)
@@ -33,12 +37,13 @@ class DrawObjectsSandboxWidget @JvmOverloads constructor(
 
         paint.color = ContextCompat.getColor(context, R.color.gray_70)
 
+        // this shape will not be drawn if quickReject is active
         drawByStyle(canvas, paint, rect2)
     }
 
     private fun drawByStyle(canvas: Canvas, paint: Paint, rect: Rect) {
         rectF.set(rect)
-        invalidate(rect)
+
         // check if defined object lies inside the canvas
 //        if (canvas.quickReject(rectF, Canvas.EdgeType.BW)) return
 

@@ -34,6 +34,8 @@ class DrawPathSandboxWidget @JvmOverloads constructor(
 
         Log.d(tag, "drawing path: $path")
 
+        // path will be drawn in a single pass => no overdraw but overlapping shapes will probably cause a mess if left
+        // unattended
         canvas.drawPath(path, paint)
     }
 
